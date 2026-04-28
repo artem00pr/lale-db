@@ -54,7 +54,7 @@ export class WaterBodiesController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(['ADMIN'])
+  //@Roles(['ADMIN'])
   @Patch(':id/measurements/:measurementId')
   updateMeasurement(
     @Param('id', ParseIntPipe) id: number,
