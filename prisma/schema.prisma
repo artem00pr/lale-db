@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  login     String   @unique
+  email     String   @unique
+  password  String
+  avatarUrl String?
+  role      String   @default("CLIENT")
+  createdAt DateTime @default(now())
+}
+
+model WaterBody {
+  id           Int           @id @default(autoincrement())
+  name         String
+  latitude     Float
+  longitude    Float
+  region       String
+  passport     Passport?
+  measurements Measurement[]
+  createdAt    DateTime      @default(now())
+}
+
+model Passport {
+  id          Int       @id @default(autoincrement())
+  area        Float?
+  depth       Float?
+  bio         String?
+  waterBodyId Int       @unique
+  waterBody   WaterBody @relation(fields: [waterBodyId], references: [id])
+}
+
+model Measurement {
+  id          Int       @id @default(autoincrement())
+  date        DateTime  @default(now())
+  ph          Float?
+  mineral     Float?
+  salinity    Float?
+  hardness    Float?
+  waterBodyId Int
+  waterBody   WaterBody @relation(fields: [waterBodyId], references: [id])
+}
