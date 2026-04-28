@@ -8,7 +8,6 @@
     "start": "node dist/main.js",
     "start:dev": "nest start --watch",
     "prisma:generate": "prisma generate",
-    "prisma:push": "prisma db push",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -41,6 +40,6 @@
     "typescript": "^5.7.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18"
   }
 }
